@@ -9,7 +9,7 @@ simple_alias "popiterm" "📺" "Open a new iTerm window at current directory" "b
 simple_alias "open-termx" "📂" "Open termx repo in Cursor" "cursor ~/eng/2026/core/termx"
 simple_alias "finder" "📂" "Open current directory in Finder" "open ."
 
-helper "paste" "📋" "Paste clipboard contents to a file" << 'EOF'
+helper "clip2file" "📋" "Paste clipboard contents to a file" << 'EOF'
     local filename="$1"
     if [[ -z "$filename" ]]; then
         printf "📋 Filename: "
