@@ -16,7 +16,10 @@ helper "clip2file" "📋" "Paste clipboard contents to a file" << 'EOF'
         read filename
     fi
     [[ -z "$filename" ]] && echo "❌ No filename provided" && return 1
+    # A leading dash is a flag or stdin ("-"), never a name: "paste -" once wrote -.md.
+    [[ "$filename" == -* ]] && echo "❌ Filename cannot start with '-': $filename" && return 1
     [[ "$filename" != *.* ]] && filename="${filename}.md"
+    [[ -e "$filename" ]] && echo "❌ $filename exists; not overwriting" && return 1
     pbpaste > "$filename"
     echo "📋 Pasted to $filename"
 EOF
